@@ -12,10 +12,9 @@
 docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.0 start-dev
 ```
 - Step 2: criar realm (Ex: first-realm)
-- Step 3: criar usuario para o novo realm (admin usa o default realm)
-- Step 4: criar client para o novo realm (Ex: first-client)
-- Step 5: testar em https://www.keycloak.org/app/
-- Step 6: habilitar autenticacao por client_credentials
+- Step 3: criar client para o novo realm (Ex: first-client)
+- Step 4: testar em https://www.keycloak.org/app/
+- Step 5: habilitar autenticacao por client_credentials
 
 ![img.png](.imgs/img1.png)
 
