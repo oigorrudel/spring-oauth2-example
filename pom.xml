@@ -17,6 +17,6 @@
 
     <modules>
         <module>api-one</module>
+        <module>api-two</module>
     </modules>
-
 </project>
