@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,7 +30,11 @@ public class CustomWebSecurity {
     @SneakyThrows
     SecurityFilterChain securityFilterChain(final HttpSecurity httpSecurity) {
         return httpSecurity
-            .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+            .authorizeHttpRequests(
+                auth -> auth
+                    .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                    .anyRequest().authenticated()
+            )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(new JwtConverter())))
             .build();
     }
@@ -48,16 +53,11 @@ public class CustomWebSecurity {
             return new JwtAuthenticationToken(jwt, authorities, getPrincipalClaimName(jwt));
         }
 
-        private String getPrincipalClaimName(Jwt jwt) {
-//            String claimName = JwtClaimNames.SUB;
-//            if (properties.getPrincipalAttribute() != null) {
-//                claimName = properties.getPrincipalAttribute();
-//            }
-
+        private String getPrincipalClaimName(final Jwt jwt) {
             return jwt.getClaim(JwtClaimNames.SUB);
         }
 
-        private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
+        private Collection<? extends GrantedAuthority> extractResourceRoles(final Jwt jwt) {
             Map<String, Object> resourceAccess = jwt.getClaim("resource_access");
             Map<String, Object> resource;
             Collection<String> resourceRoles;
