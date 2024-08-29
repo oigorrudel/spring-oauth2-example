@@ -31,7 +31,7 @@ docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin
 Com seguranca na camada <b>WEB</b>, utilizando Spring Security autenticando no Keycloak (Autenticação OAuth2 Bearer JWT).
 
 ## api-two
-Sem segurança na camada <b>WEB</b>, solicitando token para consumir via rest a ```api-one``` utilizando Open Feign.
+Sem segurança na camada <b>WEB</b>, solicitando token para consumir via rest a ```api-one``` utilizando Feign.
 
 ## api-three
-Com seguranca na camada <b>WEB</b>, propagando o token ao consumir via rest a ```api-one``` utilizando Open Feign.
+Com seguranca na camada <b>WEB</b>, propagando o token ao consumir via rest a ```api-one``` utilizando Feign.
