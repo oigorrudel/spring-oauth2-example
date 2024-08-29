@@ -1,7 +1,12 @@
 # spring-oauth2-example
 ```
-    Swagger: http://localhost:9001/swagger-ui/index.html
+    Swaggers: 
+        http://localhost:9001/swagger-ui/index.html
+        http://localhost:9002/swagger-ui/index.html
+        http://localhost:9003/swagger-ui/index.html
+    
     Keycloak: http://localhost:8080/
+    
     Others requests: .http/requests.http
 ```
 
@@ -23,7 +28,10 @@ docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin
 ![img.png](.imgs/img3.png)
 
 ## api-one
-Api com seguranca na camada <b>WEB</b> utilizando Spring Security com autenticação integrada ao Keycloak (Autenticação OAuth2 Bearer JWT).
+Com seguranca na camada <b>WEB</b>, utilizando Spring Security autenticando no Keycloak (Autenticação OAuth2 Bearer JWT).
 
 ## api-two
-Api sem segurança na camada <b>WEB</b>, mas consumindo a ```api-one``` utilizando Open Feign autenticando no Keycloak.
+Sem segurança na camada <b>WEB</b>, solicitando token para consumir via rest a ```api-one``` utilizando Open Feign.
+
+## api-three
+Com seguranca na camada <b>WEB</b>, propagando o token ao consumir via rest a ```api-one``` utilizando Open Feign.
